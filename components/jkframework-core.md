@@ -83,28 +83,16 @@ db-entities-packages=com.app
 ### Config Initialization   
 In most cases, configuration will be auto initlized and loaded during the application startups using listeners. However, if for some reason you want to initialize it your self, the first call to `JKConfig.get()` will auto configure it.
 
-And to retrieve value from the configuration, use the following code:
+### Retreive Value from Config
+To retrieve value from the configuration, use the following code:
+```java
+String property = JKConfig.get().getProperty("your-variable-name", "default value);
+```
 
-String property = JKConfig.getDefaultInstance().getProperty("your-variable-name", "default value);
-Multi-Database Support
-In the config file, you can add a prefix to the same configuration used in normal database setup. Then you can call the
+or as a shortcut, you can use:
 
-mydb.hibernate.connection.driver_class = oracle.jdbc.driver.OracleDriver
-mydb.hibernate.connection.url =jdbc:oracle:thin:@0.0.0.0:1521:DB
-mydb.hibernate.dialect =org.hibernate.dialect.Oracle12cDialect
-mydb.hibernate.connection.username =user
-mydb.hibernate.connection.password = pass
-Microservices
-jk.service.crosscutting.logservice.enabled=false jk.service.crosscutting.logservice.base jk.service.crosscutting.logservice.async=false jk.service.url.visibleOnError=true
+```java
+String propertyValue=JK.getProperty("your-property-name","default-value");
+```
+in `JKConfig` class you will find a lot of useful getter methods that returnes the needed datatypes directly without the need of any conversion or casting such as `getPropertyAsInteger`, `getPropertyAsBoolean`, `getPropertyAsDate`.
 
-Access Properties
-Properties are all used internally by the framework, but if you need for any reason, you can access any property, use
-
-Prior to versions 1-3, all the configuration was set on System properties, and could retrieved by:
-
-System.getProperty(propertyName);
-In version 4, it should be retrieved like this:
-
-JKConfig.getDefaultInstance().getProperty(propertyName);
-Home | License | FAQ | Contact | Smart-API
-All copyrights reserved to Dr. Jalal Kiswani.
