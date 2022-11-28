@@ -11,22 +11,21 @@ Please check the below link for more details about the list of available configs
 Available properties.
 
 **Configuration Order**
-In JKFramework, the configuration are loaded based on the following priorities:
-- Load smartcloud.config file if exists from current working directory, and override and previous configuration [Starting from 5.1.0].
-- Load configuration from default.config.properties (not recommended to use, since its already available in the framework data API’s).
-- Load configuration from system.config.properties and override and previous configuration.
-- Load configuration from app.config.properties and override and previous configuration.
-- Load configuration from config.properties and override and previous configuration.
-- Load the keys directly from host environment variables, for example, you can set the hibernate.connection.username as environment variable key, individually and override and previous configuration.
+In JKFramework, the configuration are loaded from the following sources based on the priorities-order:
+- Load _smartcloud.config_ file if exists from current working directory, and override any configuration from the following config sources (useful for standalone deployments).
+- Load _test.config.properties_ file if exists from the classpath, and override any configuration from the following config sources (useful for test automation).
+- Process _pre.config.properties_ which shall contains a local path for the config and/or Git repository settings. In this file:
+  - Look for _app.name_ property, if not found, look for it in the following datasources.
+  - If config.local.path is available, read system.config.properties and ${app.name}.config.properties from it.
+  - if _git-url_ is there, repository will be cloned to local folder  _config.local.path_ value if configured.
+  - Read _system.config.properties_ and YOUR_APP_NAME.config.properties from cloned repository.
+  - If _git-keep-local_ property is false (default), the cloned local folder will be deleted once loaded.
 - Load SMART_CLOUD environment variable if exists, where the value is CSV key-value format for the configuration, and override and previous configuration.
-- Load from CloudFoundery VCAP_SERVICES environment variable if exists, and override and previous configuration.
-- Process pre.config.properties which shall contains a local path for the config and/or Git repository settings (check the below section). In this file:
-- Look for app.name property, if not found, read it from previous configurations.
-- If config.local.path is available, read system.config.properties and ${app.name}.config.properties from it.
-- if git-url is there, repository will be cloned to local folder (${config.local.path} if configured).
-- Read system.config.properties and ${app.name}.config.properties from cloned repository.
-- If git-keep-local property is false (default), the cloned local folder will be deleted.
-- Load test.config.properties file if exists from the classpath, and override and previous configuration.
+- Load the keys directly from host environment variables, for example, you can set the hibernate.connection.username as environment variable key, individually and override and previous configuration.
+- Load configuration from config.properties and override and previous configuration.
+- Load configuration from app.config.properties and override and previous configuration.
+- Load configuration from system.config.properties and override and previous configuration.
+- Load configuration from default.config.properties (not recommended to use, since its already available in the framework data API’s).
 
 
 loading config activity diagram
@@ -58,6 +57,7 @@ java.home = ${env:JAVA_HOME}
 Basic Usage
 Create src/main/resources/config.properties file inside your root source folder, in case of maven projects, with the following sample contents:
 
+````properties
 #H2 Configurations
 hibernate.connection.driver_class = org.h2.Driver
 hibernate.connection.url = jdbc:h2:file:./h2db.data
@@ -80,6 +80,7 @@ hibernate.connection.password = sa
 hibernate.hbm2ddl.auto=update
 #Package to scan for JPA entities, CSV value is allowed for multiple packages
 db-entities-packages=com.app
+````
 Config Initialization
 In most cases, configuration will be auto initlized and loaded during the application startups using listeners. However, if for some reason you want to initialize it your self, the first call to JKConfig.getDefaultInstance() will auto configure it.
 
