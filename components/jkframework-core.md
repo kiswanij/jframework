@@ -9,7 +9,7 @@ This section includes the user-guide of JK-Framework configurations.
 
 ### Configuration properties
 
-Please check the below link for more details about the list of available configs properties used by JK-Framework:
+Please check this [link](config-list.md) for more details about the list of available configs properties used by JK-Framework:
 Available properties.
 
 ### Configuration Order
