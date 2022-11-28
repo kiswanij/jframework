@@ -1,7 +1,7 @@
 # JKFramework
 
 JKFramework is an end-end Java development framework that enables faster and efficient software development. It is consists of the following sub-projects:
-- **JKFramework-Core**:
+- [**JKFramework-Core**](components/jkframework-core.md):
 It is a set of libraries, utilities, and API's that could help developers with small tasks such as Configurations, Context, Exception Handling, Logging, I/O, and many other. 
 
 - **JKFramework-Data** 
