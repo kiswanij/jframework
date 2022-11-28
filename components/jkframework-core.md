@@ -14,7 +14,7 @@ Available properties.
 
 ### Configuration Order
 In JKFramework, the configuration are loaded from the following sources based on the priorities-order:
-1. Load 'smartcloud.config' file if exists from current working directory, and override any configuration from the following config sources (useful for standalone deployments).
+1. Load `smartcloud.config` file if exists from current working directory, and override any configuration from the following config sources (useful for standalone deployments).
 2. Load _test.config.properties_ file if exists from the classpath, and override any configuration from the following config sources (useful for test automation).
 3. Process _pre.config.properties_ which shall contains a local path for the config and/or Git repository settings and overrider and properties configured in the later config sources. In this file:
   - Look for _app.name_ property, if not found, look for it in the following datasources.
