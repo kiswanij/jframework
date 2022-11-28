@@ -13,22 +13,22 @@ Please check the below link for more details about the list of available configs
 Available properties.
 
 ### Configuration Order
-In JKFramework, the configuration are loaded from the following sources based on the priorities-order:
+In JKFramework, the configuration are loaded from the following config sources based on the priorities-order:
 1. Load `smartcloud.config` file if exists from current working directory, and override any configuration from the following config sources (useful for standalone deployments).
-2. Load _test.config.properties_ file if exists from the classpath, and override any configuration from the following config sources (useful for test automation).
-3. Process _pre.config.properties_ which shall contains a local path for the config and/or Git repository settings and overrider and properties configured in the later config sources. In this file:
-  - Look for _app.name_ property, if not found, look for it in the following datasources.
-  - If config.local.path is available, read system.config.properties and ${app.name}.config.properties from it.
-  - if _git-url_ is there, repository will be cloned to local folder  _config.local.path_ value if configured.
-  - Read _system.config.properties_ and YOUR_APP_NAME.config.properties from cloned repository.
-  - If _git-keep-local_ property is false (default), the cloned local folder will be deleted once loaded.
-4. Load _JKFRAMEWORK_ENV_ environment variable if exists, where the value is CSV key-value format of the configuration, and override any of the following configurations.
-5. Load configuration from _config.properties_ and override any of the following configurations.
-6. Load configuration from _app.config.properties_ and override any of the following configurations.
-7. Load configuration from _system.config.properties_ and override any of the following configurations.
-8. Load configuration from _default.config.properties_ (not recommended to use, since its loaded from the framework Data API’s).
+2. Load `test.config.properties` file if exists from the classpath, and override any configuration from the following config sources (useful for test automation).
+3. Process `pre.config.properties` which shall contains a local path for the config and/or Git repository settings and overrider and properties configured in the later config sources (usefull for Microservices and Multi components systems). In this approach:  
+  a) Look for _app.name_ property, if not found, look for it in the following config sources.   
+  b) If _config.local.path_ is available, read `system.config.properties` and `${app.name}.config.properties` from it.   
+  c) if _git-url_ is there, repository will be cloned to local folder  _config.local.path_ value if configured.   
+  d) Read `system.config.properties` and `YOUR_APP_NAME.config.properties` from cloned repository.       
+  e) If _git-keep-local_ property is false (default), the cloned local folder will be deleted once loaded.   
+4. Load _JKFRAMEWORK_ENV_ key from system environment variable if exists, where the value is CSV key-value format of the configuration, and override any of the following configurations (usefull for apps with simple configurations which requireshost  operator ownership).
+5. Load configuration from `config.properties` and override any of the following configurations.
+6. Load configuration from `app.config.properties` and override any of the following configurations.
+7. Load configuration from `system.config.properties` and override any of the following configurations.
+8. Load configuration from `default.config.properties` (not recommended to use, since its loaded from the framework Data API’s).
 
-Example of _pre.config.properties_ that should put in _src/main/resources_ folder of your Maven project.
+Example of `pre.config.properties` that should put in _src/main/resources_ folder of your Maven project.
 
 ```properties
 app.name=....
