@@ -72,7 +72,7 @@ jk.remote.app.name--
 |jk.web.versions|true| Enable version servlets at /version|
 |jk.web.mvc.models.package|com.app| Under development|
 |jk.security.enabled|false|Enable spring security for this app, default usename/password wil be admin/admin|
-|jk.web.security.public_url|/services/**,/index.xhtml,/error/**,/login/**,/public/**,/resources/**,*.css,*.js,/javax.faces.resource/**,/util/**|-|
+|jk.web.security.public_url|/services/**, /index.xhtml, /error/**, /login/**, /public/**, /resources/**, *.css, *.js, /javax.faces.resource/**, /util/**|-|
 
 |jk.encKey|SetMeIneEnvVaria|The encryption key used in encryption and decryptions, this shuold be set as environment variable |
 
