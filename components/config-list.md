@@ -65,12 +65,16 @@ If you don’t provide the configuration, defaults will be applied:
 
 jk.remote.app.name--
 
-## WebStack
+## Web and WebStack
 | Config Name	| Default	| Description|
 |---|----|----|
+|jk.web.config.resetjk.web.config.reset|true|Enable reload config servlet by calling /config/reset|
+|jk.web.versions|true| Enable version servlets at /version|
+|jk.web.mvc.models.package|com.app| Under development|
 |jk.security.enabled|false|Enable spring security for this app, default usename/password wil be admin/admin|
-|jk.web.security.public_url|/services/**,/index.xhtml,/error/**,/login/**,/public/**,/resources/**,*.css,*.js,/javax.faces.resource/**,/util/**-
-jk.web.session.username
+|jk.web.security.public_url|/services/**,/index.xhtml,/error/**,/login/**,/public/**,/resources/**,*.css,*.js,/javax.faces.resource/**,/util/**|-|
+
+|jk.encKey|SetMeIneEnvVaria|The encryption key used in encryption and decryptions, this shuold be set as environment variable |
 
 
 ## Microservices
@@ -89,35 +93,3 @@ jk.web.session.username
 |jk.logs.allowReadFile|false||
 |jk.config.allowReadConfig|false|-|
 |jk.services.workflow.url|-|-|
-
-
-
-
--
-
--
-
-jk.web.config.reset
-
-true
-
--
-
-jk.web.versions
-
-true
-
--
-
-jk.web.mvc.models.package
-
-com.app
-
--
-
-jk.encKey
-
-SetMeIneEnvVaria
-
--
-
