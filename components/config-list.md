@@ -34,193 +34,64 @@ Below are the default Hibernate configuration used by the framework. We use C3p0
 |hibernate.c3p0.timeout|3600|-|Release un-needed connections above the min-size|
 |hibernate.c3p0.acquire_increment|1|-|
 
-Configurations Defaults:
-If you don’t provide the configuration, defaults will be as follows:
-
-Header Name	Default	Description
-app.name
-
-app
-
-Your application name
-
-nosql.url
-
-mongodb://localhost:27017/
-
--
-
-nosql.db.name
-
-app
-
-Default Database name.
-
-nosql.db.user
-
-Default Database user.
-
-nosql.db.password
-
-Default Database password.
-
-git-url
-
--
-
-Repository URL (The place where your code is stored).
-
-git-keep-local
-
-false
-
-Keep/Remove cloned repository folder.
-
-git-branch
-
-master
-
-Target Git branch.
-
-git-password-plain
-
--
-
--
-
-git-password
-
--
-
-Password of your git account.
-
-git-username
-
--
-
-Usename of you git account.
-
-git-local-path
-
--
-
-The path where your repository should be cloned.
-
-db-entities-packages
-
-com.app
-
-The package names to scan for JPA entities. CSV value is allowed for multiple packages
-
-jk.data.connection.set_client_info
-
-false
-
--
-
-jk.data.orm.results.max
-
-1000
-
--
-
-jk.remote.app.name
-
--
-
--
-
-jk.security.enabled
-
-false
-
--
-
-jk.service.crosscutting.logservice.enabled
-
-false
-
--
-
-jk.service.crosscutting.logservice.base
-
--
-
--
-
-jk.service.crosscutting.logservice.async
-
-true
-
--
-
-jk.service.url.visibleOnError
-
-true
-
--
-
-jk.service.allowed.ip
-
-true
-
--
-
-jk.service.connect_timeout
-
-10
-
--
-
-jk.service.read_timeout
-
-20
-
--
-
-jk.services.headers.enabled
-
-true
-
--
-
-jk.config.allowReload
-
-true
-
--
-
-jk.services.info.enabled
-
-true
-
--
-
-jk.logs.allowReadFile
-
-true
-
--
-
-jk.config.allowReadConfig
-
-false
-
--
-
-jk.services.workflow.url
-
--
-
--
-
-jk.web.security.public_url
-
-DEFAULT_PUBLIC_URLS
-
--
-
+## MongoDB Config:
+If you don’t provide the configuration, defaults will be applied:
+
+
+| Config Name	| Default	| Description|
+|---|----|----|
+|nosql.url|mongodb://localhost:27017/|-|
+|nosql.db.name|app|Default Database name|
+|nosql.db.user|-|Default Database user|
+|nosql.db.password|-|Default Database password|
+
+## Pre Config
+| Config Name	| Default	| Description|
+|---|----|----|
+|git-url|-|Repository URL used for loading your configuration|
+|git-keep-local|false|Keep/Remove cloned repository folder|
+|git-branch|master|Target Git branch|
+|git-password-plain|-|Repo password in plain text (Not recommanded)|
+|git-password|-|Encrypted Password of your git account|
+|git-username|-|Usename of you git account|
+|git-local-path|Temporary folder that will be created automcatally|The path where your repository should be cloned|
+
+## JPA Config
+| Config Name	| Default	| Description|
+|---|----|----|
+|db-entities-packages|com.app|The package names to scan for JPA entities. CSV value is allowed for multiple packages|
+|jk.data.connection.set_client_info|false|Set the client information on the database session, usfull for troubleshooting purposes|
+|jk.data.orm.results.max|1000|-|
+
+jk.remote.app.name--
+
+## WebStack
+| Config Name	| Default	| Description|
+|---|----|----|
+|jk.security.enabled|false|Enable spring security for this app, default usename/password wil be admin/admin|
+|jk.web.security.public_url|/services/**,/index.xhtml,/error/**,/login/**,/public/**,/resources/**,*.css,*.js,/javax.faces.resource/**,/util/**-
 jk.web.session.username
+
+
+## Microservices
+| Config Name	| Default	| Description|
+|---|----|----|
+|jk.service.crosscutting.logservice.enabled|false|Enable unified logging service for all mciroservices out of the box|
+|jk.service.crosscutting.logservice.base|-|The url of the logging service|
+|jk.service.crosscutting.logservice.async|true|Log service using Async to avoid blocking|
+|jk.service.url.visibleOnError|true|Show microserices URLs on communications failures|
+|jk.service.allowed.ip|-|Comma serpated values of the allowed IP's to call a microservice|
+|jk.service.connect_timeout|10 seconds|The connection timeout from Microserice client to amicroservice|
+|jk.service.read_timeout|20 seconds|The default timeout waiting for a microsrvice to return a result|
+|jk.services.headers.enabled|false|Utility used to dump the header of the header of Microservice client on the Microservice side| 
+|jk.config.allowReload|true|Allow reload microservices configurations|
+|jk.services.info.enabled|flase|| 
+|jk.logs.allowReadFile|false||
+|jk.config.allowReadConfig|false|-|
+|jk.services.workflow.url|-|-|
+
+
+
 
 -
 
