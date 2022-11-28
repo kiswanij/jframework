@@ -3,10 +3,12 @@
 
 It is a set of API's, utilites, and wrapper that enables faster and reliable applications development, such as configurations, exception handling, context, I/O, and many others, and which are the intensivly used by the other projects in the framework
 
-## Configuration
+## Configuration  
+
 This section includes the user-guide of JK-Framework configurations.
 
 **Configuration properties**
+
 Please check the below link for more details about the list of available configs properties used by JK-Framework:
 Available properties.
 
@@ -26,32 +28,33 @@ In JKFramework, the configuration are loaded from the following sources based on
 7. Load configuration from _system.config.properties_ and override any of the following configurations.
 8. Load configuration from _default.config.properties_ (not recommended to use, since its loaded from the framework Data API’s).
 
-loading config activity diagram
-Figure 1. Flowchart of the load configuration process.
-Load Configuration from Local Folder or Git Repository
-Starting from 4.0.9, you can specify a Git repository to host your configurations per app.
+Example of _pre.config.properties_ that should put in _src/main/resources_ folder of your Maven project.
 
-You can do it by adding a pre.config.properties to your src/main/resources folder of your project.
-
+```properties
 app.name=....
 config.local.path=....
 git-url=....
 git-username=....
 #git-password=.....
 git-password-plain=.....
-In your repository, you can have system.config.properties file as default configuration for all the apps in your applications, also you can specify the configuration per module by having a file named ${app.name}.config.properties where ${app.name} is the value of your app.name property in the pre.config.properties mentioned above.
+```
 
-For profiles, you can use git branches as profiles, for example, you can create dev,staging, and prod branches.
+In your repository, you can have _system.config.properties_ file as default configuration for all the apps in your applications, also you can specify the configuration per module by having a file named _${app.name}.config.properties_ where ${app.name} is the value of your _app.name_ property in the _pre.config.properties_ mentioned above.
 
-If you have multiple projects and you don’t want to place the git repotisoty configuration in each project, you can put the pre.config.properties in a commons lib project, and have app.config.properties in each project with the app.name key only.
+:: **TIP**: For confgurations profiles, you can use git branches as profiles, for example, you can create _dev_, _test_,  _staging_, and _prod_ branches.
 
-To have more flexibility and security, you can replace your config.properties or "pre.config.properties" during the CICD process to have the right configuration to avoid exposing production and other environments configurations to the wrong people.
+**TIP:** If you have multiple projects and you don’t want to duplicate the git repository configuration in each project, you can place the _pre.config.properties_ in a commons lib project, and have _app.config.properties_ in each project with the _app.name_ key only.
 
-Smart-Cloud configuration is based on Apache Commons Config, so you can use the system, constants, or environment variables as follows:
+To have more flexibility and security, you can replace your _config.properties_ or _pre.config.properties_ during the CICD process to have the right configuration or adding environment variables to avoid exposing production and other environments configurations to the non-authorized people.
 
+JKFramework configuration is based on _Apache Commons Config_, so you can use the _system_, _constants_, or _environment_ variables as follows:
+
+```properties
 user.file = ${sys:user.home}/settings.xml
 action.key = ${const:yourclass.CONSTANT_NAME}
 java.home = ${env:JAVA_HOME}
+```
+
 Basic Usage
 Create src/main/resources/config.properties file inside your root source folder, in case of maven projects, with the following sample contents:
 
