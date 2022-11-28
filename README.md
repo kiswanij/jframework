@@ -30,3 +30,4 @@ Parent project that include all the needed configuration of maven projects such 
 In addition of the features of of JK-App, it contains the needed depdencies of webapp development. 
 
 - **JK-App-WebStack**
+In addition of the features of JK-App-WebApp, it consists of the needed depecnceis of accessing database and microserices. 
