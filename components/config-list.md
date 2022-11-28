@@ -6,7 +6,7 @@ This section includes the available confituration and its defaults in the framew
 | Config Name	| Default	| Description|
 |---|----|----|
 |app.name|JKFramework-App| A name for your app or your component|
-
+|jk.encKey|SetMeIneEnvVaria|The encryption key used in encryption and decryptions, this shuold be set as environment variable |
 
 ## Pre Config
 | Config Name	| Default	| Description|
@@ -19,15 +19,6 @@ This section includes the available confituration and its defaults in the framew
 |git-username|-|Usename of you git account|
 |git-local-path|Temporary folder that will be created automcatally|The path where your repository should be cloned|
 
-## JPA Config
-| Config Name	| Default	| Description|
-|---|----|----|
-|db-entities-packages|com.app|The package names to scan for JPA entities. CSV value is allowed for multiple packages|
-|jk.data.connection.set_client_info|false|Set the client information on the database session, usfull for troubleshooting purposes|
-|jk.data.orm.results.max|1000|-|
-
-jk.remote.app.name--
-
 ## Web and WebStack
 | Config Name	| Default	| Description|
 |---|----|----|
@@ -35,10 +26,7 @@ jk.remote.app.name--
 |jk.web.versions|true| Enable version servlets at /version|
 |jk.web.mvc.models.package|com.app| Under development|
 |jk.security.enabled|false|Enable spring security for this app, default usename/password wil be admin/admin|
-|jk.web.security.public_url|/services/**, /index.xhtml, /error/**, /login/**, /public/**, /resources/**, *.css, *.js, /javax.faces.resource/**, /util/**|-|
-
-|jk.encKey|SetMeIneEnvVaria|The encryption key used in encryption and decryptions, this shuold be set as environment variable |
-
+|jk.web.security.public_url|/services/*, /index.xhtml, /error/*, /login/*, /public/*, /resources/*, *.css, *.js, /javax.faces.resource/*, /util/* |-| 
 
 ## Microservices
 | Config Name	| Default	| Description|
@@ -57,6 +45,12 @@ jk.remote.app.name--
 |jk.config.allowReadConfig|false|-|
 |jk.services.workflow.url|-|URL of the workflow microservice |
 
+## JPA Config
+| Config Name	| Default	| Description|
+|---|----|----|
+|db-entities-packages|com.app|The package names to scan for JPA entities. CSV value is allowed for multiple packages|
+|jk.data.connection.set_client_info|false|Set the client information on the database session, usfull for troubleshooting purposes|
+|jk.data.orm.results.max|1000|-|
 
 ## Hibernate and C3P0 Connection  
 Below are the default Hibernate configuration used by the framework. We use C3p0 connection pool implementation; Detailed configuration description be found at C3p0 Official Documentaion
